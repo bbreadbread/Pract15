@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatDarkButton}">
+        <Setter Property="Background" Value="{StaticResource MainAccent}"/>
+    </Style>
+
+    <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
+        <Setter Property="Background" Value="{StaticResource MainAccent}"/>
+    </Style>
+
+    <!--<Style TargetType="Button" BasedOn="{StaticResource Butt}">
+        <Setter Property="Background" Value="{StaticResource MainAccent}"/>
+    </Style>-->
+</ResourceDictionary>

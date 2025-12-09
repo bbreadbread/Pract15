@@ -1,0 +1,15 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="MainBackgroung" Color="#dfeaeb"/>
+    
+    <!--(Кнопки, поля ввода, другие интерактивные элементы)-->
+    <SolidColorBrush x:Key="MainAccent" Color="#00C4B4"/>
+
+    <!--(дополнительное выделение)-->
+    <SolidColorBrush x:Key="AddAccent" Color="#00b4c4"/>
+
+    <!--(Если остаток меньше 10)-->
+    <SolidColorBrush x:Key="BalanceBorder" Color="#ffd129"/>
+    
+</ResourceDictionary>
