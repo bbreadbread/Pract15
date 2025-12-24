@@ -82,19 +82,22 @@ public partial class Pract15Context : DbContext
 
         modelBuilder.Entity<ProductTag>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("product_tags$");
+            entity.ToTable("product_tags$");
+            entity.HasKey(e => new { e.ProductId, e.TagId });
 
             entity.Property(e => e.ProductId).HasColumnName("product_id");
             entity.Property(e => e.TagId).HasColumnName("tag_id");
 
-            entity.HasOne(d => d.Product).WithMany()
+            entity.HasOne(d => d.Product)
+                .WithMany(p => p.ProductTags)
                 .HasForeignKey(d => d.ProductId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_product_tags$_products$");
 
-            entity.HasOne(d => d.Tag).WithMany()
+            entity.HasOne(d => d.Tag)
+                .WithMany(t => t.ProductTags)
                 .HasForeignKey(d => d.TagId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_product_tags$_tags$");
         });
 

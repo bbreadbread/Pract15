@@ -7,101 +7,8 @@
         xmlns:local="clr-namespace:Pract15"
         mc:Ignorable="d"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
-        Title="Данные формы" Height="450" Width="800" Activated="LoadList">
-    <Grid Margin="5">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="70"/>
-            <RowDefinition/>
-            <RowDefinition Height="30"/>
-        </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-            <Label>Поиск</Label>
-            <TextBox  Text="{Binding searchQuery, UpdateSourceTrigger=PropertyChanged}" 
-                      TextChanged="TextBox_TextChanged"
-                      materialDesign:HintAssist.Hint="Введите текст для поиска"/>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="0">
-            <Label FontSize="16">Сортировка</Label>
-            <ComboBox SelectionChanged="ComboBoxSort_SelectionChanged">
-                <ComboBox.Items>
-                    <ComboBoxItem Tag="Name">По названию</ComboBoxItem>
-                    <ComboBoxItem Tag="Price">По цене</ComboBoxItem>
-                    <ComboBoxItem Tag="Stock">По остатку</ComboBoxItem>
-                </ComboBox.Items>
-            </ComboBox>
-            <Label>Фильтры</Label>
-            <ComboBox SelectionChanged="ComboBoxFilter_SelectionChanged">
-                <ComboBox.Items>
-                    <ComboBoxItem Tag="Category">По категории</ComboBoxItem>
-                    <ComboBoxItem Tag="Brand">По бренду</ComboBoxItem>
-                    <ComboBoxItem Tag="Price">По цене</ComboBoxItem>
-                </ComboBox.Items>
-            </ComboBox>
-
-            <StackPanel x:Name="FilterBrandPanel" Visibility="Collapsed">
-                <Label FontSize="16">Фильтр по бренду</Label>
-                <TextBox Text="{Binding filterBrandFrom, UpdateSourceTrigger=PropertyChanged}"
-                 materialDesign:HintAssist.Hint="Введите бренд"
-                 TextChanged="TextBox_TextChanged"/>
-            </StackPanel>
-
-            <StackPanel x:Name="FilterCategoryPanel" Visibility="Collapsed">
-                    <Label FontSize="16">Фильтр по категории</Label>
-                    <TextBox Text="{Binding filterCategoryFrom, UpdateSourceTrigger=PropertyChanged}"
-                     materialDesign:HintAssist.Hint="Введите категорию"
-                     TextChanged="TextBox_TextChanged"/>
-            </StackPanel>                        <StackPanel x:Name="FilterPricePanel" Visibility="Collapsed">
-                <Label FontSize="16">Фильтр по цене</Label>
-                <Label>от</Label>
-                <TextBox Text="{Binding filterPriceIdFrom, UpdateSourceTrigger=PropertyChanged}"
-                         materialDesign:HintAssist.Hint="Введите рост"
-                         TextChanged="TextBox_TextChanged"/>
-                <Label>до</Label>
-                <TextBox Text="{Binding filterPriceIdTo, UpdateSourceTrigger=PropertyChanged}" 
-                        materialDesign:HintAssist.Hint="Введите рост"
-                        TextChanged="TextBox_TextChanged"/>
-            </StackPanel>                                        <Button Margin="5">Сбросить</Button>
-        </StackPanel>
-        <materialDesign:ColorZone Grid.Row="1" Grid.Column="1" Mode="SecondaryMid">
-            <ListView Grid.Row="1" Grid.Column="1" ItemsSource="{Binding products}" Name="FormsList" HorizontalContentAlignment="Stretch">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Grid.Column="0">
-                                <TextBlock Text="{Binding Name}"/>
-                                <TextBlock>
-                                    <Run Text="Звездочка "/>
-                                    <Run Text="{Binding Rating}"/>
-                                </TextBlock>
-                                <TextBlock>
-                                    <Run Text="{Binding Description}"/>
-                                </TextBlock>
-                            </StackPanel>
-                            <StackPanel Grid.Column="1">
-                                <TextBlock HorizontalAlignment="Right">                                    
-                                    <Run Text="{Binding Price}"/>
-                                    <Run Text="Рублей"/>
-                                </TextBlock>
-                                <TextBlock HorizontalAlignment="Right">
-                                    <Run Text="Остаток "/>
-                                    <Run Text="{Binding Stock}"/>
-                                </TextBlock>
-                            </StackPanel>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </materialDesign:ColorZone>
-        <WrapPanel Grid.Row="2" Grid.ColumnSpan="2">
-            <TextBlock Text="{Binding forms.Count, StringFormat='{}Всего записей:{0}'}"/>
-            <TextBlock Text="{Binding Items.Count, ElementName=FormsList, StringFormat='{} Показано: {0}'}"/>
-        </WrapPanel>    </Grid>
+        Title="Данные формы" Height="750" Width="1100"
+        Style="{StaticResource ALL}">
+    <Grid>
+        <Frame Source="Pages/Login.xaml" NavigationUIVisibility="Hidden"/>    </Grid>
 </Window>

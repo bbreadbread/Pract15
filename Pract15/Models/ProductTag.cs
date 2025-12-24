@@ -3,32 +3,32 @@ using System.Collections.Generic;
 
 namespace Pract15.Models;
 
-public class ProductTag : ObservableObject
+public partial class ProductTag : ObservableObject
 {
-    private double? _productId;
-    private double? _tagId;
-    private Product _product;
-    private Tag _tag;
+    private int _productId;
+    private int _tagId;
+    private Product _product = null!;
+    private Tag _tag = null!;
 
-    public double? ProductId
+    public int ProductId
     {
         get => _productId;
         set => SetProperty(ref _productId, value);
     }
 
-    public double? TagId
+    public int TagId
     {
         get => _tagId;
         set => SetProperty(ref _tagId, value);
     }
 
-    public Product Product
+    public virtual Product Product
     {
         get => _product;
         set => SetProperty(ref _product, value);
     }
 
-    public Tag Tag
+    public virtual Tag Tag
     {
         get => _tag;
         set => SetProperty(ref _tag, value);

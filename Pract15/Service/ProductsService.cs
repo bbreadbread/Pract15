@@ -81,25 +81,25 @@ namespace Pract15.Service
 
         public void GetAllCategory(string category)
         {
-            var userGroups = _db.Products
+            var prod = _db.Products
                                    .Include(u => u.Category)
                                    .Where(t => t.Category.Name == category)
                                    .ToList();
 
             Products.Clear();
 
-            foreach (var userGroup in userGroups)
+            foreach (var p in prod)
             {
-                Products.Add(userGroup);
+                Products.Add(p);
             }
         }
 
-        public void Remove(Product InterestGroup)
+        public void Remove(Product prod)
         {
-            _db.Remove<Product>(InterestGroup);
+            _db.Remove<Product>(prod);
             if (Commit() > 0)
-                if (Products.Contains(InterestGroup))
-                    Products.Remove(InterestGroup);
+                if (Products.Contains(prod))
+                    Products.Remove(prod);
         }
     }
 }
