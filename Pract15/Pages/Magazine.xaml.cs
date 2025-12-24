@@ -25,6 +25,8 @@ namespace Pract15.Pages
     /// </summary>
     public partial class Magazine : Page
     {
+        public int BrandId { get; set; }
+        public int CategoryId { get; set; }
         public string filterBrand { get; set; } = null!;
         public string filterCategory { get; set; } = null!;
 
@@ -81,9 +83,10 @@ namespace Pract15.Pages
             if (!String.IsNullOrEmpty(filterPriceIdTo) && Convert.ToInt32(filterPriceIdTo) < product.Price)
                 return false;
 
-            if (!String.IsNullOrEmpty(filterBrand) && filterBrand != product.Brand.Name)
+            if (BrandId > 0 && product.BrandId != BrandId)
                 return false;
-            if (!String.IsNullOrEmpty(filterCategory) && filterCategory != product.Category.Name)
+
+            if (CategoryId > 0 && product.CategoryId != CategoryId)
                 return false;
 
             return true;
@@ -158,6 +161,37 @@ namespace Pract15.Pages
         private void ButtonBack_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Login());
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void cbBrand_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cbBrand.SelectedValue != null)
+            {
+                BrandId = (int)cbBrand.SelectedValue;
+            }
+            else
+            {
+                BrandId = 0;
+            }
+            productsView.Refresh();
+        }
+
+        private void cbCat_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cbCat.SelectedValue != null)
+            {
+                CategoryId = (int)cbCat.SelectedValue;
+            }
+            else
+            {
+                CategoryId = 0;
+            }
+            productsView.Refresh();
         }
     }
 }

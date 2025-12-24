@@ -5,9 +5,15 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:Pract15.Pages"
+      xmlns:services="clr-namespace:Pract15.Service"
       mc:Ignorable="d" 
       DataContext="{Binding RelativeSource={RelativeSource Self}}"
       Title="Каталог" d:DesignHeight="750" d:DesignWidth="1100" Loaded="LoadList">
+
+    <Page.Resources>
+        <services:CategoriesService x:Key="catService"/>
+        <services:BrandsService    x:Key="brdService"/>
+    </Page.Resources>
     
     <Grid>
         <Grid.ColumnDefinitions>
@@ -84,6 +90,18 @@
              materialDesign:HintAssist.Hint="Введите бренд"
              TextChanged="TextBox_TextChanged"
                       Style="{StaticResource Main}"/>
+
+
+                                    <StackPanel Grid.Column="1">
+                                        <TextBlock Style="{DynamicResource WHITE}">Бренд:</TextBlock>
+                                        <ComboBox DisplayMemberPath="Name"
+                                  SelectedValuePath="Id"
+                                  x:Name="cbBrand"
+                                  SelectedValue="{Binding BrandId}"
+                                  ItemsSource="{Binding Source={StaticResource brdService}, Path=Items}"
+                                          SelectionChanged="cbBrand_SelectionChanged"        />
+                                    </StackPanel>
+                
             </StackPanel>
 
             <StackPanel x:Name="FilterCategoryPanel" Visibility="Collapsed">
@@ -92,6 +110,20 @@
                  materialDesign:HintAssist.Hint="Введите категорию"
                  TextChanged="TextBox_TextChanged"
                           Style="{StaticResource Main}"/>
+
+
+
+                                    <StackPanel Grid.Column="1">
+                                        <TextBlock Style="{DynamicResource WHITE}">Категория:</TextBlock>
+                                        <ComboBox DisplayMemberPath="Name"
+                                  SelectedValuePath="Id"
+                                  x:Name="cbCat"
+                                  SelectedValue="{Binding CategoryId}"
+                                  ItemsSource="{Binding Source={StaticResource catService}, Path=Items}"
+                                                  SelectionChanged="cbCat_SelectionChanged"/>
+                                        
+                                    </StackPanel>
+                
             </StackPanel>            <StackPanel x:Name="FilterPricePanel" Visibility="Collapsed">
                 <Label FontSize="16">Фильтр по цене</Label>
                 <Label>от</Label>
@@ -104,13 +136,12 @@
                     materialDesign:HintAssist.Hint="До"
                     TextChanged="TextBox_TextChanged"
                       Style="{StaticResource Main}"/>
-            </StackPanel>            <Button Margin="5">
+            </StackPanel>            <Button Margin="5" Click="Button_Click">
                 <TextBlock Text="Сбросить" Style="{DynamicResource WHITE}"/>
             </Button>
         </StackPanel>
         <materialDesign:ColorZone Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Mode="SecondaryMid">
-            <ListView Grid.Row="1" Grid.Column="1" ItemsSource="{Binding products}" Name="FormsList" HorizontalContentAlignment="Stretch"
-                      >
+            <ListView Grid.Row="1" Grid.Column="1" ItemsSource="{Binding products}" Name="FormsList" HorizontalContentAlignment="Stretch">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Border x:Name="ProductBorder" Style="{StaticResource Stock}">
@@ -120,7 +151,7 @@
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
 
-                                <StackPanel Grid.Column="0">
+                                <StackPanel Grid.Column="0" >
                                     <TextBlock Text="{Binding Name}" Style="{StaticResource WHITE}"/>
                                     <TextBlock Style="{StaticResource WHITE}">
                                         <Run Text="★ "/>
@@ -199,10 +230,10 @@
                             </DataTrigger>
                         </DataTemplate.Triggers>
                     </DataTemplate>
-
                 </ListView.ItemTemplate>
             </ListView>
         </materialDesign:ColorZone>
+        
         <WrapPanel Grid.Row="3" Grid.ColumnSpan="3">
             <TextBlock Style="{StaticResource WHITE}" Text="{Binding forms.Count, StringFormat='{}Всего записей:{0}'}"/>
             <TextBlock Style="{StaticResource WHITE}" Text="{Binding Items.Count, ElementName=FormsList, StringFormat='{} Показано: {0}'}"/>
