@@ -223,10 +223,11 @@ namespace Pract15.Pages
 
             if (IsProducts)
             {
+                ProductPanel.DataContext = _product;
                 bool hasError = Validation.GetHasError(tbName) ||
-            Validation.GetHasError(tbDescription) ||
-            Validation.GetHasError(tbPrice) ||
-            Validation.GetHasError(tbStock);
+                Validation.GetHasError(tbDescription) ||
+                Validation.GetHasError(tbPrice) ||
+                Validation.GetHasError(tbStock);
 
                 if (!hasError)
                 {
@@ -241,6 +242,7 @@ namespace Pract15.Pages
             }
             else if (IsCategories)
             {
+                CategoryPanel.DataContext = _category;
                 if (!Validation.GetHasError(tbNameCat))
                 {
                     _originalCategory.Name = _category.Name;
@@ -249,6 +251,7 @@ namespace Pract15.Pages
             }
             else if (IsBrands)
             {
+                BrandPanel.DataContext = _brand;
                 if (!Validation.GetHasError(tbNameBrand))
                 {
                     _originalBrand.Name = _brand.Name;
@@ -257,6 +260,7 @@ namespace Pract15.Pages
             }
             else if (IsTags)
             {
+                TagPanel.DataContext = _tag;
                 if (!Validation.GetHasError(tbNameTag))
                 {
                     _originalTag.Name = _tag.Name;
@@ -273,6 +277,18 @@ namespace Pract15.Pages
 
             if (IsProducts)
             {
+                if (string.IsNullOrWhiteSpace(_product.Name) ||
+            string.IsNullOrWhiteSpace(_product.Description) ||
+            _product.Price <= 0 || _product.CategoryId == 0 || _product.BrandId == 0)
+                {
+                    MessageBox.Show("Заполните все обязательные поля продукта");
+                    return;
+                }
+                if(_product == null)
+                    {
+                        MessageBox.Show("Заполните все поля");
+                    }
+
                 bool hasError = Validation.GetHasError(tbName) ||
             Validation.GetHasError(tbDescription) ||
             Validation.GetHasError(tbPrice) ||
@@ -282,10 +298,11 @@ namespace Pract15.Pages
                 {
                     ProductPanel.DataContext = _product;
 
+                   
                     cbCat.GetBindingExpression(ComboBox.SelectedValueProperty)?.UpdateSource();
                     cbBrand.GetBindingExpression(ComboBox.SelectedValueProperty)?.UpdateSource();
 
-                    _product.CreatedAt = DateTime.Now.ToString("yyyy-MM-dd");
+                    _product.CreatedAt = DateTime.Now.Date;
                     _product.Rating = 0.0;
 
                     _productsService.Add(_product);
@@ -293,6 +310,20 @@ namespace Pract15.Pages
             }
             else if (IsCategories)
             {
+                // Проверка на null объекта _category
+                if (_category == null)
+                {
+                    MessageBox.Show("Нельзя добавить пустую категорию");
+                    return;
+                }
+
+                // Дополнительная проверка поля категории
+                if (string.IsNullOrWhiteSpace(_category.Name))
+                {
+                    MessageBox.Show("Введите название категории");
+                    return;
+                }
+
                 if (!Validation.GetHasError(tbNameCat))
                 {
                     CategoryPanel.DataContext = _category;
@@ -301,6 +332,18 @@ namespace Pract15.Pages
             }
             else if (IsBrands)
             {
+                if (_brand == null)
+                {
+                    MessageBox.Show("Нельзя добавить пустой бренд");
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(_brand.Name))
+                {
+                    MessageBox.Show("Введите название бренда");
+                    return;
+                }
+
                 if (!Validation.GetHasError(tbNameBrand))
                 {
                     BrandPanel.DataContext = _brand;
@@ -309,13 +352,29 @@ namespace Pract15.Pages
             }
             else if (IsTags)
             {
+                if (_tag == null)
+                {
+                    MessageBox.Show("Нельзя добавить пустой тег");
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(_tag.Name))
+                {
+                    MessageBox.Show("Введите название тега");
+                    return;
+                }
+
                 if (!Validation.GetHasError(tbNameTag))
                 {
                     TagPanel.DataContext = _tag;
                     _tagService.Add(_tag);
                 }
             }
-
+            else
+            {
+                MessageBox.Show("Выберите тип элемента для добавления");
+                return;
+            }
 
             LoadList(sender, e);
         }

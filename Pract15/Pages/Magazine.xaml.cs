@@ -25,10 +25,10 @@ namespace Pract15.Pages
     /// </summary>
     public partial class Magazine : Page
     {
-        public int BrandId { get; set; }
-        public int CategoryId { get; set; }
-        public string filterBrand { get; set; } = null!;
-        public string filterCategory { get; set; } = null!;
+        public int? BrandId { get; set; }
+        public int? CategoryId { get; set; }
+        //public string filterBrand { get; set; } = null!;
+        //public string filterCategory { get; set; } = null!;
 
         public string filterPriceIdFrom { get; set; } = null!;
         public string filterPriceIdTo { get; set; } = null!;
@@ -78,9 +78,12 @@ namespace Pract15.Pages
             if (searchQuery != null && !product.Name.Contains(searchQuery, StringComparison.CurrentCultureIgnoreCase))
                 return false;
 
-            if (!String.IsNullOrEmpty(filterPriceIdFrom) && Convert.ToInt32(filterPriceIdFrom) > product.Price)
+            if (int.TryParse(filterPriceIdFrom, out int q))
+                if (!String.IsNullOrEmpty(filterPriceIdFrom) && Convert.ToInt32(filterPriceIdFrom) > product.Price)
                 return false;
-            if (!String.IsNullOrEmpty(filterPriceIdTo) && Convert.ToInt32(filterPriceIdTo) < product.Price)
+
+            if (int.TryParse(filterPriceIdTo, out int w))
+                if (!String.IsNullOrEmpty(filterPriceIdTo) && Convert.ToInt32(filterPriceIdTo) < product.Price)
                 return false;
 
             if (BrandId > 0 && product.BrandId != BrandId)
@@ -192,6 +195,18 @@ namespace Pract15.Pages
                 CategoryId = 0;
             }
             productsView.Refresh();
+        }
+
+        private void ButtonResetBrand_Click(object sender, RoutedEventArgs e)
+        {
+            cbBrand.SelectedIndex = -1;
+            BrandId = null;
+        }
+
+        private void ButtonResetCategory_Click(object sender, RoutedEventArgs e)
+        {
+            cbCat.SelectedIndex = -1;
+            CategoryId = null;
         }
     }
 }

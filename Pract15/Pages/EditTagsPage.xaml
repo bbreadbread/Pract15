@@ -20,18 +20,19 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Button Click="back">Назад</Button>
+        <Button Click="back"  Style="{StaticResource AdminBut}" Content="&lt; К админской панели"/>
 
         <ListView Grid.Row="1"
               Grid.RowSpan="2"
              ItemsSource="{Binding tagsService.Items}"
              MouseDoubleClick="add_group_user"
-             SelectedItem="{Binding tag}" Width="400">
+             SelectedItem="{Binding tag}" Width="400"
+             Style="{StaticResource TagsWork}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextBlock>
-                        <Run Text="Тег: "/>
-                        <Run Text="{Binding Name}"/>
+                        <Run Text="Общий тег: "/>
+                        <Run Text="{Binding Name}" FontWeight="Bold"/>
                     </TextBlock>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -42,13 +43,14 @@
               Grid.Column="1"
              ItemsSource="{Binding productTagsService.ProductTags}"
              MouseDoubleClick="remove_group_user"
-             SelectedItem="{Binding productTag}" Width="400">
+             SelectedItem="{Binding productTag}" Width="400"
+             Style="{StaticResource TagsWork}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Vertical">
                             <TextBlock>
-                                <Run Text="Группа: "/>
+                                <Run Text="Тег принадлежности: "/>
                                 <Run Text="{Binding Tag.Name}" FontWeight="Bold"/>
                             </TextBlock>
                         </StackPanel>

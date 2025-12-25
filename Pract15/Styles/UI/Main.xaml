@@ -120,7 +120,6 @@
         <Setter Property="Background" Value="{StaticResource AddAccent}"/>
     </Style>
 
-
     <Style TargetType="Grid" x:Key="backGrid">
         <Setter Property="Background" Value="{StaticResource AddAccent}"/>
     </Style>
@@ -128,6 +127,25 @@
     <Style TargetType="Border" x:Key="Stock">
         <Setter Property="BorderThickness" Value="4"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Padding" Value="15"/>
     </Style>
+
+    <Style TargetType="ListView" x:Key="TagsWork">
+        <Setter Property="Background" Value="{StaticResource MainBackgroung}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="6"/>
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Margin" Value="0,2"/>
+                    <Setter Property="Padding" Value="8,5"/>
+                    <Setter Property="Background" Value="{StaticResource MainAccent}"/>
+                    <Setter Property="FontSize" Value="13"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
 </ResourceDictionary>

@@ -228,15 +228,15 @@
                                     <ItemsControl ItemsSource="{Binding ProductTags}">
                                         <ItemsControl.ItemsPanel>
                                             <ItemsPanelTemplate>
-                                                <WrapPanel Orientation="Horizontal"/>
+                                                <WrapPanel Orientation="Horizontal" Background="{StaticResource MainAccent}"/>
                                             </ItemsPanelTemplate>
                                         </ItemsControl.ItemsPanel>
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
                                                 <TextBlock Style="{StaticResource WHITE}">
-                                                    <Run Text="#"/>
-                                                    <Run Text="{Binding Tag.Name}"/>
-                                                    <Run Text=" "/>
+                                                     <Run Text="#"/>
+                                                     <Run Text="{Binding Tag.Name}"/>
+                                                     <Run Text=" "/>
                                                 </TextBlock>
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
@@ -305,7 +305,6 @@
             </ListView>
         </materialDesign:ColorZone>
         <WrapPanel Grid.Row="3" Grid.ColumnSpan="2">
-            <TextBlock Style="{StaticResource WHITE}" Text="{Binding forms.Count, StringFormat='{}Всего записей:{0}'}"/>
-            <TextBlock Style="{StaticResource WHITE}" Text="{Binding Items.Count, ElementName=FormsList, StringFormat='{} Показано: {0}'}"/>
+            <TextBlock Style="{StaticResource WHITE}" Text="{Binding Items.Count, ElementName=FormsList, StringFormat='{} Записей: {0}'}"/>
         </WrapPanel>    </Grid>
 </Page>

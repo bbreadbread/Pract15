@@ -14,7 +14,7 @@ public partial class Product : ObservableObject
     private double? _stock;
 
     private double? _rating;
-    private string? _createdAt;
+    private DateTime? _createdAt;
     private int? _categoryId;
 
     private int? _brandId;
@@ -57,7 +57,7 @@ public partial class Product : ObservableObject
         set => SetProperty(ref _rating, value);
     }
 
-    public string? CreatedAt
+    public DateTime? CreatedAt
     {
         get => _createdAt;
         set => SetProperty(ref _createdAt, value);
