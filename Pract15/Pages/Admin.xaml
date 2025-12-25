@@ -112,7 +112,7 @@
                             <TextBox.Text>
                                 <Binding Path="Stock">
                                     <Binding.ValidationRules>
-                                        <validators:NumberValidation/>
+                                        <validators:NumberIntValidation/>
                                     </Binding.ValidationRules>
                                 </Binding>
                             </TextBox.Text>

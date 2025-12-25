@@ -57,6 +57,11 @@ namespace Pract15.Pages
 
         public void LoadList(object sender, EventArgs e)
         {
+            if (Application.Current.MainWindow != null)
+            {
+                Application.Current.MainWindow.Title = "Каталог";
+            }
+
             products.Clear();
             foreach (var product in db.Products
                 .Include(p => p.Brand)

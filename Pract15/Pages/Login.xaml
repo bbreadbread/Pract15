@@ -8,7 +8,7 @@
       xmlns:local="clr-namespace:Pract15.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="750" d:DesignWidth="1100"
-      Title="Login">
+      Title="Login" Loaded="Page_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

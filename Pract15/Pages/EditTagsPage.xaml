@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Pract15.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="EditTagsPage"  DataContext="{Binding RelativeSource={RelativeSource Self}}">
+      Title="EditTagsPage"  DataContext="{Binding RelativeSource={RelativeSource Self}}" Loaded="Page_Loaded">
 
     <Grid>
         <Grid.ColumnDefinitions>

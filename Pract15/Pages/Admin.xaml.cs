@@ -60,6 +60,11 @@ namespace Pract15.Pages
         }
         private void LoadList(object sender, EventArgs e)
         {
+            if (Application.Current.MainWindow != null)
+            {
+                Application.Current.MainWindow.Title = "Админская панель";
+            }
+
             Items.Clear();
 
             if (IsProducts)

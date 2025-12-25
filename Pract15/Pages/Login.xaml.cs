@@ -39,5 +39,13 @@ namespace Pract15.Pages
             else
             NavigationService.Navigate(new Magazine(true));
         }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (Application.Current.MainWindow != null)
+            {
+                Application.Current.MainWindow.Title = "Вход";
+            }
+        }
     }
 }
