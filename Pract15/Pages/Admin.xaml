@@ -210,7 +210,13 @@
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
 
-                                <StackPanel Grid.Column="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="100"/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+
+                                <StackPanel Grid.Column="0" Grid.RowSpan="2">
                                     <TextBlock Text="{Binding Name}" Style="{StaticResource WHITE}"/>
                                     <TextBlock Style="{StaticResource WHITE}">
                                         <Run Text="★ "/>
@@ -225,34 +231,40 @@
                                         <Run Text="{Binding Description}"/>
                                     </TextBlock>
 
-                                    <ItemsControl ItemsSource="{Binding ProductTags}">
-                                        <ItemsControl.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <WrapPanel Orientation="Horizontal" Background="{StaticResource MainAccent}"/>
-                                            </ItemsPanelTemplate>
-                                        </ItemsControl.ItemsPanel>
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <TextBlock Style="{StaticResource WHITE}">
-                                                     <Run Text="#"/>
-                                                     <Run Text="{Binding Tag.Name}"/>
-                                                     <Run Text=" "/>
-                                                </TextBlock>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
+                                </StackPanel>
+                                
+                                <ItemsControl ItemsSource="{Binding ProductTags}" Grid.Column="0" Grid.Row="2">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Orientation="Horizontal" Background="{StaticResource MainAccent}"/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Style="{StaticResource WHITE}">
+        <Run Text="#"/>
+        <Run Text="{Binding Tag.Name}"/>
+        <Run Text=" "/>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+
+                                <StackPanel Grid.Column="1" VerticalAlignment="Top">
+                                    <TextBlock HorizontalAlignment="Right" Style="{StaticResource WHITE}">
+<Run Text="{Binding Price}"/>
+<Run Text=" Рублей"/>
+                                    </TextBlock>
                                 </StackPanel>
 
-                                <StackPanel Grid.Column="1">
+                                <StackPanel Grid.Column="1" Grid.Row="1"  VerticalAlignment="Bottom">
                                     <TextBlock HorizontalAlignment="Right" Style="{StaticResource WHITE}">
-                                        <Run Text="{Binding Price}"/>
-                                        <Run Text=" Рублей"/>
-                                    </TextBlock>
-                                    <TextBlock HorizontalAlignment="Right" Style="{StaticResource WHITE}">
-                                        <Run Text="Остаток "/>
-                                        <Run Text="{Binding Stock}"/>
+    <Run Text="Остаток "/>
+    <Run Text="{Binding Stock}"/>
                                     </TextBlock>
                                 </StackPanel>
+
+
                             </Grid>
                         </Border>
 

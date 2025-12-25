@@ -64,34 +64,36 @@ namespace Pract15.Service
             }
         }
 
-        public void GetAllBrand(string brand)
+        public bool IsExistBrand(int brand)
         {
-            var userGroups = _db.Products
+            var br = _db.Products
                                    .Include(u => u.Brand)
-                                   .Where(t =>  t.Brand.Name == brand)
+                                   .Where(t => t.Brand.Id == brand)
                                    .ToList();
 
-            Products.Clear();
-
-            foreach (var userGroup in userGroups)
-            {
-                Products.Add(userGroup);
-            }
+            if (br.Count == 0)
+                return false;
+            else return true;
         }
 
-        public void GetAllCategory(string category)
+        public bool IsExistCategory(int category)
         {
-            var prod = _db.Products
+            var c = _db.Products
                                    .Include(u => u.Category)
-                                   .Where(t => t.Category.Name == category)
+                                   .Where(t => t.Category.Id == category)
                                    .ToList();
 
-            Products.Clear();
+            if (c.Count == 0)
+                return false;
+            else return true;
+        }
 
-            foreach (var p in prod)
-            {
-                Products.Add(p);
-            }
+        public bool IsExistTag(int tag)
+        {
+            var c = _db.Products
+                                   .Include(u => u.ProductTags)
+                                   .Any(p => p.ProductTags.Any(pt => pt.TagId == tag));
+            return c;
         }
 
         public void Remove(Product prod)

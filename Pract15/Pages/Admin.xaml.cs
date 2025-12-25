@@ -314,14 +314,12 @@ namespace Pract15.Pages
             }
             else if (IsCategories)
             {
-                // Проверка на null объекта _category
                 if (_category == null)
                 {
                     MessageBox.Show("Нельзя добавить пустую категорию");
                     return;
                 }
 
-                // Дополнительная проверка поля категории
                 if (string.IsNullOrWhiteSpace(_category.Name))
                 {
                     MessageBox.Show("Введите название категории");
@@ -401,20 +399,24 @@ namespace Pract15.Pages
                     else if (IsCategories)
                     {
                         _originalCategory = (Category)selectedItem;
-                        _categoriesService.Remove(_originalCategory);
+                        if (_productsService.IsExistCategory(_originalCategory.Id) == false)
+                            _categoriesService.Remove(_originalCategory);
+                        else MessageBox.Show("Отказано в удалении. Существуют записи с данной категорией");
                     }
                     else if (IsBrands)
                     {
                         _originalBrand = (Brand)selectedItem;
-                        _brandService.Remove(_originalBrand);
+                        if (_productsService.IsExistBrand(_originalBrand.Id) == false)
+                            _brandService.Remove(_originalBrand);
+                        else MessageBox.Show("Отказано в удалении. Существуют записи с данным брендом");
                     }
                     else if (IsTags)
                     {
                         _originalTag = (Tag)selectedItem;
 
-                        _productTagsService.RemoveAllByTagId(_originalTag.Id);
-
-                        _tagService.Remove(_originalTag);
+                        if (_productsService.IsExistTag(_originalTag.Id) == false)
+                            _tagService.Remove(_originalTag);
+                        else MessageBox.Show("Отказано в удалении. Существуют записи с данным тегом");
                     }
                     LoadList(sender, e);
                 }
