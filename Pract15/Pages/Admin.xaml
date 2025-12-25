@@ -12,7 +12,6 @@
       DataContext="{Binding RelativeSource={RelativeSource Self}}"
       Title="Каталог" d:DesignHeight="750" d:DesignWidth="1100" Loaded="LoadList">
 
-
     <Page.Resources>
         <services:CategoriesService x:Key="catService"/>
         <services:BrandsService    x:Key="brdService"/>
@@ -31,7 +30,8 @@
         </Grid.RowDefinitions>
 
         <TextBlock Text="Админ" Style="{StaticResource Title}" Grid.ColumnSpan="3"/>
-        
+
+
         <Button x:Name="ButtonToAdminPage" Content="&lt; Вернуться в каталог" Grid.Column="0" Style="{StaticResource AdminBut}" Click="ButtonToMagazinePage_Click"/>
         
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">

@@ -52,7 +52,6 @@ namespace Pract15.Pages
         public Pract15Context db = DBService.Instance.Context;
         public ObservableCollection<object> Items { get; set; } = new();
         public Object? selectedItem { get; set; } = null;
-        public ICollectionView listView { get; set; }
         public string searchQuery { get; set; } = null!;
 
         public Admin()
@@ -423,5 +422,6 @@ namespace Pract15.Pages
             if (p == null) { return; }
             NavigationService.Navigate(new EditTagsPage(p));
         }
+
     }
 }
